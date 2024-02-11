@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require('body-parser')
-const publishMessage = require("./sendar");
+const publishMessage = require("./publisher");
 const port = 5000;
 const { v4: uuidv4 } = require('uuid');
 app.use(bodyParser.json())
@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.post("/user", async (req, res) => {
   if (req.body.name && req.body.email) {
     const uniqueId = uuidv4();
-    console.log('popopo-',uniqueId);
+    console.log('uniqueId-',uniqueId);
     const userData = {
       name: req.body.name,
       email: req.body.email,
