@@ -16,7 +16,7 @@ app.post("/user", async (req, res) => {
       id: uniqueId,
     };
     console.log('object', userData);
-    res.status(200).send({ message: `${req.user}'s account created successfully! `});
+    res.status(200).send({ message: `${userData.user}'s account created Successfully! `});
     /** Publish msg for notification service */
     await publishMessage.sendMessage(userData);
   } else {

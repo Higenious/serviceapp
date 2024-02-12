@@ -20,7 +20,6 @@ exports.sendMail = async (body) => {
       text: "User Created Successfully",
     });
     console.log("Email Notification sent Successfully!");
-    return
   } catch (error) {
     console.log("Error while sending msg", error);
   }

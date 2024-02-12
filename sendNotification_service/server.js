@@ -2,10 +2,10 @@
 const { ServiceBusClient } = require("@azure/service-bus");
 const sendMailNotifiation = require("./emailNotifiaction");
 
-const connectionString =
-  "Endpoint=sb://useraccount.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=PO4PnCTHSphb34/kfapka08wgOWFV/Y3i+ASbCgB8e0=";
-const topicName = "usertopic";
-const subscriptionName = "UserTopicScubscription";
+
+const connectionString = process.env.CONNECTION_STRING
+const topicName = process.env.TOPICNAME;
+const subscriptionName = process.env.SUBSCRIPTION_NAME;
 
 async function receiveMessages() {
   const serviceBusClient = new ServiceBusClient(connectionString);
@@ -20,7 +20,7 @@ async function receiveMessages() {
       console.log("Received message in email Notifiation svc:", messageBody);
       if (message.body) {
          await sendMailNotifiation.sendMail(messageBody);
-         await receiver.completeMessage(messageBody);
+         await receiver.completeMessage(message);
       }
     }
   } catch (error) {
